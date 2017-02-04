@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contact", "Contact\Contact.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Range", "Range\Range.csproj", "{7AF6AB8F-0C24-4BBE-ABDF-5E7324BEFF90}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vector", "Vector\Vector.csproj", "{301AB47E-543A-4C59-B2DA-0D4967AE8C27}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7AF6AB8F-0C24-4BBE-ABDF-5E7324BEFF90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AF6AB8F-0C24-4BBE-ABDF-5E7324BEFF90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AF6AB8F-0C24-4BBE-ABDF-5E7324BEFF90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{301AB47E-543A-4C59-B2DA-0D4967AE8C27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{301AB47E-543A-4C59-B2DA-0D4967AE8C27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{301AB47E-543A-4C59-B2DA-0D4967AE8C27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{301AB47E-543A-4C59-B2DA-0D4967AE8C27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
