@@ -16,7 +16,7 @@ namespace Range
             double dblNumber01 = 1.5;
             double dblNumber02 = 6.5;
 
-            Console.WriteLine("Длина интервала ({0}, {1}): {2}.", objRange.From, objRange.To, objRange.GetInterval());
+            Console.WriteLine("Длина интервала ({0}, {1}): {2}.", objRange.From, objRange.To, objRange.GetLength);
 
             if (objRange.IsInside(dblNumber01))
             {

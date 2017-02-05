@@ -9,44 +9,37 @@ namespace Range
     class Range
     {
         // Поля класса Range
-        private double dblFrom;
-        private double dblTo;
+        private double from, to;
 
         // Конструкторы класса Range
         public Range(double from, double to)
         {
-            this.dblFrom = from;
-            this.dblTo = to;
+            this.from = from;
+            this.to = to;
         }
-
-        public Range()
-        { }
 
         // Свойства класса Range
         public double From
         {
-            get { return dblFrom; }
-            set { dblFrom = value; }
+            get { return from; }
+            set { from = value; }
         }
 
         public double To
         {
-            get { return dblTo; }
-            set { dblTo = value; }
+            get { return to; }
+            set { to = value; }
+        }
+
+        public double GetLength
+        {
+            get { return (to - from); }
         }
 
         // Методы класса Range
-        public double GetInterval()
-        {
-            return Math.Abs(dblTo - dblFrom);
-        }
-
         public bool IsInside(double number)
         {
-            if ((number >= dblFrom)&&(number <= dblTo))
-            { return true; }
-            else
-            { return false; }
+            return ((number >= From)&&(number <= To));
         }
     }
 }
