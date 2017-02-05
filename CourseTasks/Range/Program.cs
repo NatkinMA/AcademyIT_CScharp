@@ -13,10 +13,12 @@ namespace Range
             Console.WriteLine("Программа для работы с классом Range");
 
             Range objRange = new Range(-5.5, 5.5);
+            Range objRange1 = new Range();
             double dblNumber01 = 1.5;
             double dblNumber02 = 6.5;
 
             Console.WriteLine("Длина интервала ({0}, {1}): {2}.", objRange.from, objRange.to, objRange.GetLength);
+            Console.WriteLine("Длина интервала ({0}, {1}): {2}.", objRange1.from, objRange1.to, objRange1.GetLength);
 
             if (objRange.IsInside(dblNumber01))
             {

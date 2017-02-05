@@ -19,6 +19,9 @@ namespace Range
             this.to = to;
         }
 
+        public Range() { }
+
+        // Свойства класса Range
         public double GetLength
         {
             get { return (to - from); }
