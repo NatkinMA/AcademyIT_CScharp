@@ -16,24 +16,24 @@ namespace Range
             double dblNumber01 = 1.5;
             double dblNumber02 = 6.5;
 
-            Console.WriteLine("Длина интервала ({0}, {1}): {2}.", objRange.From, objRange.To, objRange.GetLength);
+            Console.WriteLine("Длина интервала ({0}, {1}): {2}.", objRange.from, objRange.to, objRange.GetLength);
 
             if (objRange.IsInside(dblNumber01))
             {
-                Console.WriteLine("Число {0} входит в интервал ({1}, {2}).", dblNumber01, objRange.From, objRange.To);
+                Console.WriteLine("Число {0} входит в интервал ({1}, {2}).", dblNumber01, objRange.from, objRange.to);
             }
             else
             {
-                Console.WriteLine("Число {0} не входит в интервал ({1}, {2}).", dblNumber01, objRange.From, objRange.To);
+                Console.WriteLine("Число {0} не входит в интервал ({1}, {2}).", dblNumber01, objRange.from, objRange.to);
             }
 
             if (objRange.IsInside(dblNumber02))
             {
-                Console.WriteLine("Число {0} входит в интервал ({1}, {2}).", dblNumber02, objRange.From, objRange.To);
+                Console.WriteLine("Число {0} входит в интервал ({1}, {2}).", dblNumber02, objRange.from, objRange.to);
             }
             else
             {
-                Console.WriteLine("Число {0} не входит в интервал ({1}, {2}).", dblNumber02, objRange.From, objRange.To);
+                Console.WriteLine("Число {0} не входит в интервал ({1}, {2}).", dblNumber02, objRange.from, objRange.to);
             }
 
             Console.WriteLine("Для выходя нажмите клавишу Утеук...");

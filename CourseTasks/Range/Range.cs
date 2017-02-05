@@ -8,27 +8,15 @@ namespace Range
 {
     class Range
     {
-        // Поля класса Range
-        private double from, to;
+        // Свойства класса Range
+        public double from { get; set; }
+        public double to { get; set; }
 
         // Конструкторы класса Range
         public Range(double from, double to)
         {
             this.from = from;
             this.to = to;
-        }
-
-        // Свойства класса Range
-        public double From
-        {
-            get { return from; }
-            set { from = value; }
-        }
-
-        public double To
-        {
-            get { return to; }
-            set { to = value; }
         }
 
         public double GetLength
@@ -39,7 +27,7 @@ namespace Range
         // Методы класса Range
         public bool IsInside(double number)
         {
-            return ((number >= From)&&(number <= To));
+            return ((number >= from)&&(number <= to));
         }
     }
 }
