@@ -38,6 +38,9 @@ namespace Range
                 Console.WriteLine("Число {0} не входит в интервал ({1}, {2}).", dblNumber02, objRange.from, objRange.to);
             }
 
+            Range objRangeRes = objRange.Intersection(objRange1);
+            Console.WriteLine("Длина пересечения интервалов ({0}, {1}): {2}.", objRangeRes.from, objRangeRes.to, objRangeRes.GetLength);
+
             Console.WriteLine("Для выходя нажмите клавишу Утеук...");
             Console.ReadLine();
         }
