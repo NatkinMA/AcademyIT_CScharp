@@ -34,12 +34,13 @@ namespace Range
         {
             return ((number >= From) && (number <= To));
         }
-        // Получение интервала-пересечения двух интервалов. 
+        // Метод для получения пересечения двух интервалов. 
         // Если пересечения нет, выдать null. 
         // Если есть, то выдать новый диапазон с соответствующими концами.
         public Range Intersection(Range range)
         {
             Range ResultRange = new Range();
+
             if (range.From < this.From)
             {
                 ResultRange.From = this.From;   
@@ -70,6 +71,14 @@ namespace Range
             }
             
             return ResultRange;
+        }
+        // Метод для получения объединения двух интервалов.
+        // Может получиться 1 или 2 отдельных куска.
+        public Range[] Union(Range range)
+        {
+            
+
+            return null;
         }
     }
 }
