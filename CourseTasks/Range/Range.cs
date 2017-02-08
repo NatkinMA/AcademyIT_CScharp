@@ -43,7 +43,7 @@ namespace Range
 
             if (range.From < this.From)
             {
-                ResultRange.From = this.From;   
+                ResultRange.From = this.From;
             }
             else if (this.IsInside(range.From))
             {
@@ -53,8 +53,8 @@ namespace Range
             {
                 ResultRange = null;
             }
-            
-            if(ResultRange != null)
+
+            if (ResultRange != null)
             {
                 if (range.To < this.From)
                 {
@@ -69,16 +69,53 @@ namespace Range
                     ResultRange.To = this.To;
                 }
             }
-            
+
             return ResultRange;
         }
         // Метод для получения объединения двух интервалов.
         // Может получиться 1 или 2 отдельных куска.
         public Range[] Union(Range range)
         {
-            
-
-            return null;
+            Range[] ResultRange = null;
+            if (range.From < this.From)
+            {
+                if (range.To < this.From)
+                {
+                    ResultRange = new Range[2];
+                    ResultRange[0] = range;
+                    ResultRange[1] = this;
+                }
+                else if (this.IsInside(range.To))
+                {
+                    ResultRange = new Range[1];
+                    ResultRange[0] = new Range(range.From, this.To);
+                }
+                else if (range.To > this.To)
+                {
+                    ResultRange = new Range[1];
+                    ResultRange[0] = range;
+                }
+            }
+            else if (this.IsInside(range.From))
+            {
+                if (this.IsInside(range.To))
+                {
+                    ResultRange = new Range[1];
+                    ResultRange[0] = this;
+                }
+                else if (range.To > this.To)
+                {
+                    ResultRange = new Range[1];
+                    ResultRange[0] = new Range (this.From, range.To);
+                }
+            }
+            else if (range.From > this.To)
+            {
+                ResultRange = new Range[2];
+                ResultRange[0] = this;
+                ResultRange[1] = range;
+            }
+            return ResultRange;
         }
     }
 }

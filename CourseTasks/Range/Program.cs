@@ -50,6 +50,18 @@ namespace Range
                 Console.WriteLine("Интервалы не пересекаются.");
             }
 
+            Range[] RangeResUnion = Range2.Union(Range1);
+            Console.Write("Объединение интервалов ");
+            for(int i = 0; i < RangeResUnion.Length; i++)
+            {
+                if (i > 0)
+                {
+                    Console.Write("U");
+                }
+                Console.Write("({0}, {1})", RangeResUnion[i].From, RangeResUnion[i].To);
+            }
+            Console.WriteLine(".");
+
             Console.WriteLine("Для выходя нажмите клавишу Утеук...");
             Console.ReadLine();
         }
