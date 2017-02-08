@@ -62,6 +62,25 @@ namespace Range
             }
             Console.WriteLine(".");
 
+            Range[] RangeResDif = Range2.Difference(Range1);
+            Console.Write("Разница интервалов ");
+            if (RangeResDif.Length > 0)
+            {
+                for(int i = 0; i < RangeResDif.Length; i++)
+                {
+                    if(i > 0)
+                    {
+                        Console.Write("U");
+                    }
+                    Console.Write("({0}, {1})", RangeResDif[i].From, RangeResDif[i].To);
+                }
+                Console.WriteLine(".");
+            }
+            else
+            {
+                Console.WriteLine("пустое множество.");
+            }
+
             Console.WriteLine("Для выходя нажмите клавишу Утеук...");
             Console.ReadLine();
         }

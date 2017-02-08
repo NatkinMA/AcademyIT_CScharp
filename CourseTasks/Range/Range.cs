@@ -76,44 +76,74 @@ namespace Range
         // Может получиться 1 или 2 отдельных куска.
         public Range[] Union(Range range)
         {
-            Range[] ResultRange = null;
+            Range[] ResultRange = new Range[0];
             if (range.From < this.From)
             {
                 if (range.To < this.From)
                 {
-                    ResultRange = new Range[2];
-                    ResultRange[0] = range;
-                    ResultRange[1] = this;
+                    ResultRange = new Range[2] { range, this };
                 }
                 else if (this.IsInside(range.To))
                 {
-                    ResultRange = new Range[1];
-                    ResultRange[0] = new Range(range.From, this.To);
+                    ResultRange = new Range[1] { new Range(range.From, this.To) };
                 }
                 else if (range.To > this.To)
                 {
-                    ResultRange = new Range[1];
-                    ResultRange[0] = range;
+                    ResultRange = new Range[1] { range };
                 }
             }
             else if (this.IsInside(range.From))
             {
                 if (this.IsInside(range.To))
                 {
-                    ResultRange = new Range[1];
-                    ResultRange[0] = this;
+                    ResultRange = new Range[1] { this };
                 }
                 else if (range.To > this.To)
                 {
-                    ResultRange = new Range[1];
-                    ResultRange[0] = new Range (this.From, range.To);
+                    ResultRange = new Range[1] { new Range(this.From, range.To) };
                 }
             }
             else if (range.From > this.To)
             {
-                ResultRange = new Range[2];
-                ResultRange[0] = this;
-                ResultRange[1] = range;
+                ResultRange = new Range[2] { this, range };
+            }
+            return ResultRange;
+        }
+        // Метод для получения разности двух интервалов.
+        // Может получиться 1 или 2 отдельных куска.
+        // Может получиться пустое множество, в этом случае метод возвращает пустой массив длины 0.
+        public Range[] Difference(Range range)
+        {
+            Range[] ResultRange = new Range[0];
+            if (range.From < this.From)
+            {
+                if (range.To < this.From)
+                {
+                    ResultRange = new Range[1] { this };
+                }
+                else if (this.IsInside(range.To))
+                {
+                    ResultRange = new Range[1] { new Range(range.To, this.To) };
+                }
+                else if (range.To > this.To)
+                {
+                    ResultRange = new Range[0];
+                }
+            }
+            else if (this.IsInside(range.From))
+            {
+                if (this.IsInside(range.To))
+                {
+                    ResultRange = new Range[2] { new Range(this.From, range.From), new Range(range.To, this.To) };
+                }
+                else if (range.To > this.To)
+                {
+                    ResultRange = new Range[1] { new Range(this.From, range.From) };
+                }
+            }
+            else if (range.From > this.To)
+            {
+                ResultRange = new Range[1] { this };
             }
             return ResultRange;
         }
