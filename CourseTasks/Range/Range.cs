@@ -42,62 +42,52 @@ namespace Range
         // Если есть, то выдать новый диапазон с соответствующими концами.
         public Range Intersection(Range range)
         {
-            if (this.IsIntersect(range))
-            {
-                return new Range(Math.Max(this.From, range.From), Math.Min(this.To, range.To));
-            }
-            else
+            if (!this.IsIntersect(range))
             {
                 return null;
             }
+            return new Range(Math.Max(this.From, range.From), Math.Min(this.To, range.To));
         }
         // Метод для получения объединения двух интервалов.
         // Может получиться 1 или 2 отдельных куска.
         public Range[] Union(Range range)
         {
-            if (this.IsIntersect(range))
-            {
-                return new Range[1] { new Range(Math.Min(this.From, range.From), Math.Max(this.To, range.To)) };
-            }
-            else
+            if (!this.IsIntersect(range))
             {
                 return new Range[2] { new Range(Math.Min(this.From, range.From), Math.Min(this.To, range.To)),
                                         new Range(Math.Max(this.From, range.From), Math.Max(this.To, range.To)) };
-            }
+            return new Range[1] { new Range(Math.Min(this.From, range.From), Math.Max(this.To, range.To)) };
         }
         // Метод для получения разности двух интервалов.
         // Может получиться 1 или 2 отдельных куска.
         // Может получиться пустое множество, в этом случае метод возвращает пустой массив длины 0.
         public Range[] Difference(Range range)
         {
-            if (this.IsIntersect(range))
+            if (!this.IsIntersect(range))
             {
-                if (range.From < this.From)
+                return new Range[1] { new Range(this.From, this.To) };
+            }
+            if (range.From < this.From)
+            {
+                if (this.IsInside(range.To))
                 {
-                    if (this.IsInside(range.To))
-                    {
-                        return new Range[1] { new Range(range.To, this.To) };
-                    }
-                    else
-                    {
-                        return new Range[0];
-                    }
+                    return new Range[1] { new Range(range.To, this.To) };
                 }
                 else
                 {
-                    if (this.IsInside(range.To))
-                    {
-                        return new Range[2] { new Range(this.From, range.From), new Range(range.To, this.To) };
-                    }
-                    else
-                    {
-                        return new Range[1] { new Range(this.From, range.From) };
-                    }
+                    return new Range[0];
                 }
             }
             else
             {
-                return new Range[1] { new Range(this.From, this.To) };
+                if (this.IsInside(range.To))
+                {
+                    return new Range[2] { new Range(this.From, range.From), new Range(range.To, this.To) };
+                }
+                else
+                {
+                    return new Range[1] { new Range(this.From, range.From) };
+                }
             }
         }
     }
