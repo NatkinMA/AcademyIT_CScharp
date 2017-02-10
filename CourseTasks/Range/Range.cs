@@ -56,6 +56,7 @@ namespace Range
             {
                 return new Range[2] { new Range(Math.Min(this.From, range.From), Math.Min(this.To, range.To)),
                                         new Range(Math.Max(this.From, range.From), Math.Max(this.To, range.To)) };
+            }
             return new Range[1] { new Range(Math.Min(this.From, range.From), Math.Max(this.To, range.To)) };
         }
         // Метод для получения разности двух интервалов.
