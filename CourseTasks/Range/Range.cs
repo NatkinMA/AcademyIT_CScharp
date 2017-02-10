@@ -54,10 +54,10 @@ namespace Range
         {
             if (!this.IsIntersect(range))
             {
-                return new Range[2] { new Range(Math.Min(this.From, range.From), Math.Min(this.To, range.To)),
+                return new Range[] { new Range(Math.Min(this.From, range.From), Math.Min(this.To, range.To)),
                                         new Range(Math.Max(this.From, range.From), Math.Max(this.To, range.To)) };
             }
-            return new Range[1] { new Range(Math.Min(this.From, range.From), Math.Max(this.To, range.To)) };
+            return new Range[] { new Range(Math.Min(this.From, range.From), Math.Max(this.To, range.To)) };
         }
         // Метод для получения разности двух интервалов.
         // Может получиться 1 или 2 отдельных куска.
@@ -66,13 +66,13 @@ namespace Range
         {
             if (!this.IsIntersect(range))
             {
-                return new Range[1] { new Range(this.From, this.To) };
+                return new Range[] { new Range(this.From, this.To) };
             }
             if (range.From < this.From)
             {
                 if (this.IsInside(range.To))
                 {
-                    return new Range[1] { new Range(range.To, this.To) };
+                    return new Range[] { new Range(range.To, this.To) };
                 }
                 else
                 {
@@ -83,11 +83,11 @@ namespace Range
             {
                 if (this.IsInside(range.To))
                 {
-                    return new Range[2] { new Range(this.From, range.From), new Range(range.To, this.To) };
+                    return new Range[] { new Range(this.From, range.From), new Range(range.To, this.To) };
                 }
                 else
                 {
-                    return new Range[1] { new Range(this.From, range.From) };
+                    return new Range[] { new Range(this.From, range.From) };
                 }
             }
         }
