@@ -12,67 +12,65 @@ namespace Range
         {
             Console.WriteLine("Программа для работы с классом Range");
 
-            Range Range1 = new Range(-5.5, 5.5);
-            Range Range2 = new Range();
-            Range2.From = 6;
-            Range2.To = 12;
-            double Number01 = 1.5;
-            double Number02 = 6.5;
+            Range range1 = new Range(-5.5, 5.5);
+            Range range2 = new Range(-10, 20);
+            double number01 = 1.5;
+            double number02 = 6.5;
 
-            Console.WriteLine("Длина интервала ({0}, {1}): {2}.", Range1.From, Range1.To, Range1.Length);
-            Console.WriteLine("Длина интервала ({0}, {1}): {2}.", Range2.From, Range2.To, Range2.Length);
+            Console.WriteLine("Длина интервала ({0}, {1}): {2}.", range1.From, range1.To, range1.Length);
+            Console.WriteLine("Длина интервала ({0}, {1}): {2}.", range2.From, range2.To, range2.Length);
 
-            if (Range1.IsInside(Number01))
+            if (range1.IsInside(number01))
             {
-                Console.WriteLine("Число {0} входит в интервал ({1}, {2}).", Number01, Range1.From, Range1.To);
+                Console.WriteLine("Число {0} входит в интервал ({1}, {2}).", number01, range1.From, range1.To);
             }
             else
             {
-                Console.WriteLine("Число {0} не входит в интервал ({1}, {2}).", Number01, Range1.From, Range2.To);
+                Console.WriteLine("Число {0} не входит в интервал ({1}, {2}).", number01, range1.From, range2.To);
             }
 
-            if (Range2.IsInside(Number02))
+            if (range2.IsInside(number02))
             {
-                Console.WriteLine("Число {0} входит в интервал ({1}, {2}).", Number02, Range2.From, Range2.To);
+                Console.WriteLine("Число {0} входит в интервал ({1}, {2}).", number02, range2.From, range2.To);
             }
             else
             {
-                Console.WriteLine("Число {0} не входит в интервал ({1}, {2}).", Number02, Range2.From, Range2.To);
+                Console.WriteLine("Число {0} не входит в интервал ({1}, {2}).", number02, range2.From, range2.To);
             }
 
-            Range RangeRes = Range2.Intersection(Range1);
-            if (RangeRes != null)
+            Range rangeRes = range2.Intersection(range1);
+            if (rangeRes != null)
             {
-                Console.WriteLine("Длина пересечения интервалов ({0}, {1}): {2}.", RangeRes.From, RangeRes.To, RangeRes.Length);
+                Console.WriteLine("Длина пересечения интервалов ({0}, {1}): {2}.", rangeRes.From, rangeRes.To, rangeRes.Length);
             }
             else
             {
                 Console.WriteLine("Интервалы не пересекаются.");
             }
 
-            Range[] RangeResUnion = Range2.Union(Range1);
+            Range[] rangeResUnion = range2.Union(range1);
             Console.Write("Объединение интервалов ");
-            for(int i = 0; i < RangeResUnion.Length; i++)
+            for(int i = 0; i < rangeResUnion.Length; i++)
             {
                 if (i > 0)
                 {
                     Console.Write("U");
                 }
-                Console.Write("({0}, {1})", RangeResUnion[i].From, RangeResUnion[i].To);
+                Console.Write("({0}, {1})", rangeResUnion[i].From, rangeResUnion[i].To);
             }
             Console.WriteLine(".");
 
-            Range[] RangeResDif = Range2.Difference(Range1);
+            Range[] rangeResDif = range2.Difference(range1);
             Console.Write("Разница интервалов ");
-            if (RangeResDif.Length > 0)
+            if (rangeResDif.Length > 0)
             {
-                for(int i = 0; i < RangeResDif.Length; i++)
+                for(int i = 0; i < rangeResDif.Length; i++)
                 {
                     if(i > 0)
                     {
                         Console.Write("U");
                     }
-                    Console.Write("({0}, {1})", RangeResDif[i].From, RangeResDif[i].To);
+                    Console.Write("({0}, {1})", rangeResDif[i].From, rangeResDif[i].To);
                 }
                 Console.WriteLine(".");
             }
