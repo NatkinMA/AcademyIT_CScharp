@@ -53,9 +53,10 @@ namespace Shape
 
         private static void GetShapeWithSecondPerimeter(Shape[] shapes)
         {
-            SortShapesByPerimeter(shapes);
+            // SortShapesByPerimeter(shapes);
+            Array.Sort(shapes, new Comparison<Shape>((shape1, shape2) => shape2.GetPerimeter().CompareTo(shape1.GetPerimeter())));
             Console.WriteLine("\nФигура со вторым по величине периметром:\nТип\t\tШирина\tВысота\tПлощадь\tПериметр\tHashCode");
-            Console.WriteLine("{0}\t\t{1}", shapes[1], shapes[2].GetHashCode());
+            Console.WriteLine("{0}\t\t{1}", shapes[1], shapes[1].GetHashCode());
         }
 
         static void Main(string[] args)
@@ -86,7 +87,7 @@ namespace Shape
             Console.WriteLine("\nТип\t\tШирина\tВысота\tПлощадь\tПериметр");
             foreach (Shape shape in shapes)
             {
-                if (square.Equals(shape) || circle.Equals(shape) || rectangle.Equals((System.Object)shape) 
+                if (square.Equals(shape) || circle.Equals(shape) || rectangle.Equals(shape) 
                     || triangle.Equals(shape))
                 {
                     Console.WriteLine("{0}\tФигуры равны", shape);

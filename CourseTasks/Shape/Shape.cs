@@ -6,15 +6,11 @@ using System.Threading.Tasks;
 
 namespace Shape
 {
-    public class Shape
+    public interface Shape
     {
-        // Свойства класса Shape
-        public string Type { get; set; }
-
-        // Методы класса Shape
-        public virtual double GetWidth() { return 0; }
-        public virtual double GetHeight() { return 0; }
-        public virtual double GetArea() { return 0; }
-        public virtual double GetPerimeter() { return 0; }
+        double GetWidth();
+        double GetHeight();
+        double GetArea();
+        double GetPerimeter();
     }
 }

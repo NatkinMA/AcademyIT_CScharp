@@ -6,71 +6,67 @@ using System.Threading.Tasks;
 
 namespace Shape
 {
-    class Square : Shape
+    sealed class Square : Shape
     {
         // Свойства класса Square
         public double Side { get; set; }
 
         // Конструктор класса Square
-        public Square(double side) { this.Type = "Квадрат"; this.Side = side; }
+        public Square(double side)
+        {
+            this.Side = side;
+        }
 
         // Методы класса Square
-        public override double GetWidth()
+        public double GetWidth()
         {
             return Side;
         }
-        public override double GetHeight()
+
+        public double GetHeight()
         {
             return Side;
         }
-        public override double GetArea()
+
+        public double GetArea()
         {
             return Side * Side;
         }
-        public override double GetPerimeter()
+
+        public double GetPerimeter()
         {
             return 4 * Side;
         }
+
         public override string ToString()
         {
-            return this.Type + "\t\t" + String.Format("{0:0.00}", this.GetWidth()) + 
-                        "\t" + String.Format("{0:0.00}", this.GetHeight()) + 
-                        "\t" + String.Format("{0:0.00}", this.GetArea()) + 
-                        "\t" + String.Format("{0:0.00}", this.GetPerimeter());
+            return "Квадрат" + "\t\t" + string.Format("{0:0.00}", this.GetWidth()) + 
+                        "\t" + string.Format("{0:0.00}", this.GetHeight()) + 
+                        "\t" + string.Format("{0:0.00}", this.GetArea()) + 
+                        "\t" + string.Format("{0:0.00}", this.GetPerimeter());
         }
+
         public override int GetHashCode()
         {
-            return Type.GetHashCode() ^ Side.GetHashCode();
+            return this.ToString().GetHashCode();
         }
+
         public bool Equals(Square square)
         {
-            return this.Type.Equals(square.Type) && this.Side.Equals(square.Side);
-        }
-        public bool Equals(Shape shape)
-        {
-            if (shape == null)
+            if (square == this)
             {
-                return false;
+                return true;
             }
-            Square square = shape as Square;
-            if (square == null)
-            {
-                return false;
-            }
-            return this.Equals(square);
+            return this.Side.Equals(square.Side);
         }
+
         public override bool Equals(object obj)
         {
-            if(obj == null)
+            if((obj == null) || !(obj is Square))
             {
                 return false;
             }
-            Square square = obj as Square;
-            if ((System.Object)square == null)
-            {
-                return false;
-            }
-            return this.Equals(square);
+            return this.Equals((Square)obj);
         }
     }
 }
