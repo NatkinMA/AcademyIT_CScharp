@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shape
 {
-    sealed class Square : Shape
+    sealed class Square : IShape
     {
         // Свойства класса Square
         public double Side { get; set; }

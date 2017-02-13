@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shape
 {
-    sealed class Rectangle : Shape
+    sealed class Rectangle : IShape
     {
         // Свойства класса Rectangle
         public double Height { get; set; }

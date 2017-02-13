@@ -8,34 +8,7 @@ namespace Shape
 {
     class Program
     {
-        private static void SwapShapes(Shape[] shapes, int left, int right)
-        {
-            if (left != right)
-            {
-                Shape temp = shapes[left];
-                shapes[left] = shapes[right];
-                shapes[right] = temp;
-            }
-        }
-
-        private static void SortShapesByPerimeter(Shape[] shapes)
-        {
-            bool swapped;
-            do
-            {
-                swapped = false;
-                for (int i = 1; i < shapes.Length; i++)
-                {
-                    if (shapes[i-1].GetPerimeter() < shapes[i].GetPerimeter())
-                    {
-                        SwapShapes(shapes, i - 1, i);
-                        swapped = true;
-                    }
-                }
-            } while (swapped != false);
-        }
-
-        private static void GetShapeWithMaxArea(Shape[] shapes)
+        private static void GetShapeWithMaxArea(IShape[] shapes)
         {
             int index = 0;
             double maxArea = 0;
@@ -51,21 +24,21 @@ namespace Shape
             Console.WriteLine("{0}\t\t{1}", shapes[index], shapes[index].GetHashCode());
         }
 
-        private static void GetShapeWithSecondPerimeter(Shape[] shapes)
+        private static void GetShapeWithSecondPerimeter(IShape[] shapes)
         {
             // SortShapesByPerimeter(shapes);
-            Array.Sort(shapes, new Comparison<Shape>((shape1, shape2) => shape2.GetPerimeter().CompareTo(shape1.GetPerimeter())));
+            Array.Sort(shapes, new Comparison<IShape>((shape1, shape2) => shape2.GetPerimeter().CompareTo(shape1.GetPerimeter())));
             Console.WriteLine("\nФигура со вторым по величине периметром:\nТип\t\tШирина\tВысота\tПлощадь\tПериметр\tHashCode");
             Console.WriteLine("{0}\t\t{1}", shapes[1], shapes[1].GetHashCode());
         }
 
         static void Main(string[] args)
         {
-            Shape[] shapes = { new Square(2), new Triangle(1, 1, 2, 2, 3, 1), new Rectangle(2, 3), new Circle(3),
+            IShape[] shapes = { new Square(2), new Triangle(1, 1, 2, 2, 3, 1), new Rectangle(2, 3), new Circle(3),
                                 new Square(15), new Triangle(3, 3, 10, 10, 12, 2), new Rectangle(5, 7), new Circle(7),
                                 new Square(7), new Triangle(0, 0, 7, 15, 14, 0), new Rectangle(6, 2), new Circle(4) };
             Console.WriteLine("Все фигуры:\nТип\t\tШирина\tВысота\tПлощадь\tПериметр\tHashCode");
-            foreach(Shape shape in shapes)
+            foreach(IShape shape in shapes)
             {
                 Console.WriteLine("{0}\t\t{1}", shape, shape.GetHashCode());
             }
@@ -85,7 +58,7 @@ namespace Shape
             Console.WriteLine(rectangle.ToString());
             Console.WriteLine(triangle.ToString());
             Console.WriteLine("\nТип\t\tШирина\tВысота\tПлощадь\tПериметр");
-            foreach (Shape shape in shapes)
+            foreach (IShape shape in shapes)
             {
                 if (square.Equals(shape) || circle.Equals(shape) || rectangle.Equals(shape) 
                     || triangle.Equals(shape))

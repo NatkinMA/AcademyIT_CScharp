@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shape
 {
-    public interface Shape
+    public interface IShape
     {
         double GetWidth();
         double GetHeight();

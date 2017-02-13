@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shape
 {
-    sealed class Triangle : Shape
+    sealed class Triangle : IShape
     {
         // Свойства класса Triangle
         public double X1 { get; set; }

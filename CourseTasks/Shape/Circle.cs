@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shape
 {
-    sealed class Circle : Shape
+    sealed class Circle : IShape
     {
         // Свойства класса Circle
         public double Radius { get; set; }
@@ -53,6 +53,10 @@ namespace Shape
 
         public bool Equals(Circle circle)
         {
+            if (circle == null)
+            {
+                return false;
+            }
             if (circle == this)
             {
                 return true;
