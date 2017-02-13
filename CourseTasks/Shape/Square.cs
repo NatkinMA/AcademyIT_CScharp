@@ -53,6 +53,10 @@ namespace Shape
 
         public bool Equals(Square square)
         {
+            if (square == null)
+            {
+                return false;
+            }
             if (square == this)
             {
                 return true;

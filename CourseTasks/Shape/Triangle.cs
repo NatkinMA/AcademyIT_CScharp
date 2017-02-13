@@ -91,6 +91,10 @@ namespace Shape
 
         public bool Equals(Triangle triangle)
         {
+            if (triangle ==  null)
+            {
+                return false;
+            }
             if (triangle == this)
             {
                 return true;

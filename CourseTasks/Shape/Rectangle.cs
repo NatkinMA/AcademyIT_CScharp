@@ -55,6 +55,10 @@ namespace Shape
 
         public bool Equals(Rectangle rectangle)
         {
+            if (rectangle == null)
+            {
+                return false;
+            }
             if (rectangle == this)
             {
                 return true;
