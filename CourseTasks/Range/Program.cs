@@ -13,7 +13,7 @@ namespace Range
             Console.WriteLine("Программа для работы с классом Range");
 
             Range range1 = new Range(-5.5, 5.5);
-            Range range2 = new Range(-10, 20);
+            Range range2 = new Range(6, 7);
             double number01 = 1.5;
             double number02 = 6.5;
 

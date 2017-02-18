@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vector", "Vector\Vector.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shape", "Shape\Shape.csproj", "{BF2B02DA-E723-44BC-B54B-76886967CF21}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sort-it", "sort-it\sort-it.csproj", "{C8309428-CB34-42DC-AE5E-479CFE939059}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{BF2B02DA-E723-44BC-B54B-76886967CF21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF2B02DA-E723-44BC-B54B-76886967CF21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF2B02DA-E723-44BC-B54B-76886967CF21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8309428-CB34-42DC-AE5E-479CFE939059}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8309428-CB34-42DC-AE5E-479CFE939059}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8309428-CB34-42DC-AE5E-479CFE939059}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8309428-CB34-42DC-AE5E-479CFE939059}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
