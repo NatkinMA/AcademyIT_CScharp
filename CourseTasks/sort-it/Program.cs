@@ -46,9 +46,27 @@ namespace sort_it
             return result;
         }
 
+        private static void Help()
+        {
+            Console.WriteLine("Справка о программе.");
+        }
+
         static void Main(string[] args)
         {
+            if (args[0] == "-help")
+            {
+                Help();
+                return;
+            }
+            if (args.Length != 4)
+            {
+                Console.WriteLine();
+            }
+            
             Console.WriteLine("Чтение данных из файла: {0}", args[0]);
+
+
+
             object[] array = new object[File.ReadAllLines(args[0]).Length];
             using (StreamReader reader = new StreamReader(args[0]))
             {
@@ -56,7 +74,7 @@ namespace sort_it
                 string currentLine;
                 while ((currentLine = reader.ReadLine()) != null)
                 {
-                    array[index] = int.Parse(currentLine);
+                    array[index] = currentLine;
                     index++;
                 }
             }
