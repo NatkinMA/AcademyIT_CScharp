@@ -9,41 +9,29 @@ namespace sort_it
 {
     class Program
     {
-        private static bool CompareObject(object obj1, object obj2, string dataType, string direction)
+        private static bool DirectionSort(string direction)
         {
-            if (dataType.Equals("-i") && direction.Equals("-a"))
-            {
-                return int.Parse(obj1.ToString()) > int.Parse(obj2.ToString());
-            }
-            if (dataType.Equals("-i") && direction.Equals("-d"))
-            {
-                return int.Parse(obj1.ToString()) < int.Parse(obj2.ToString());
-            }
-            if (dataType.Equals("-s") && direction.Equals("-a"))
-            {
-                return obj1.ToString().CompareTo(obj2.ToString()) >= 0;
-            }
-            if (dataType.Equals("-s") && direction.Equals("-d"))
-            {
-                return obj1.ToString().CompareTo(obj2.ToString()) <= 0;
-            }
-            return false;
+            return direction.Equals("-a") && !direction.Equals("-d");
         }
 
-        private static object[] InsertionSort(object[] array, string dataType, string direction)
+        private static bool IsBigOrEqual(string str1, string str2, string dataType)
         {
-            object[] result = new object[array.Length];
-            for (int i = 0; i < array.Length; i++)
+            if (dataType.Equals("-i"))
             {
-                int j = i;
-                while (j > 0 && CompareObject(result[j - 1], array[i], dataType, direction))
-                {
-                    result[j] = result[j - 1];
-                    j--;
-                }
-                result[j] = array[i];
+                return int.Parse(str1) >= int.Parse(str2);
             }
-            return result;
+            return str1.CompareTo(str2) >= 0;
+
+        }
+
+        private static void InsertionSort(List<string> ListString, string dataLine, string dataType, string direction)
+        {
+            int index = ListString.Count;
+            while (index > 0 && IsBigOrEqual(ListString[index - 1], dataLine, dataType) && DirectionSort(direction))
+            {
+                index--;
+            }
+            ListString.Insert(index, dataLine);
         }
 
         private static void Help()
@@ -53,7 +41,7 @@ namespace sort_it
             Console.WriteLine("- infilename\tОбязательный параметр. Имя файла с данными для обработки.");
             Console.WriteLine("- outfilename\tОбязательный параметр. Имя файла с обработанными данными.");
             Console.WriteLine("- -i|-s\t\tОбязательный параметр. Тип сортируемы данных:\n\t\t-i - целые числа;\n\t\t-s - строки.");
-            Console.WriteLine("- -a|-b\t\tОбязательный параметр. Направление сортировки данных:\n\t\t-a - по возрастанию;\n\t\t-d - по убыванию.");
+            Console.WriteLine("- -a|-d\t\tОбязательный параметр. Направление сортировки данных:\n\t\t-a - по возрастанию;\n\t\t-d - по убыванию.");
         }
 
         static void Main(string[] args)
@@ -71,7 +59,19 @@ namespace sort_it
                 return;
             }
 
-            Console.WriteLine("Чтение данных из файла: {0}", args[0]);
+            if (!args[2].Equals("-i") && !args[2].Equals("-s"))
+            {
+                Console.WriteLine("Неверно указан тип сортируемых данных.");
+                Help();
+                return;
+            }
+
+            if (!args[3].Equals("-a") && !args[3].Equals("-d"))
+            {
+                Console.WriteLine("Неверно указано направление сортировки данных.");
+                Help();
+                return;
+            }
 
             List<string> ListStringOfFile = new List<string>();
 
@@ -82,7 +82,7 @@ namespace sort_it
                     string str;
                     while ((str = reader.ReadLine()) != null)
                     {
-                        ListStringOfFile.Add(str);
+                        InsertionSort(ListStringOfFile, str, args[2], args[3]);
                     }
                 }
             }
