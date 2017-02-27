@@ -9,12 +9,42 @@ namespace Range
     class Range
     {
         // Свойства класса Range
-        public double From { get; set; }
-        public double To { get; set; }
+        private double from;
+        private double to;
+       
+        public double From
+        {
+            get
+            {
+                return this.from;
+            }
+            set
+            {
+                if (value > this.to) throw new Exception("Неправильно задано начало отрезка.");
+                this.from = value;
+            }
+        }
+
+        public double To
+        {
+            get
+            {
+                return this.to;
+            }
+            set
+            {
+                if (value < this.from) throw new Exception("Ошибочно задано окончание отрезка.");
+                this.to = value;
+            }
+        }
 
         // Конструктор класса Range
         public Range(double from, double to)
         {
+            if (from > to)
+            {
+                throw new Exception("Не правильно заданы параметры для создания отрезка.");
+            }
             this.From = from;
             this.To = to;
         }

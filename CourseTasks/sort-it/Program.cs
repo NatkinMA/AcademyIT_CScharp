@@ -9,29 +9,26 @@ namespace sort_it
 {
     class Program
     {
-        private static bool DirectionSort(string direction)
-        {
-            return direction.Equals("-a") && !direction.Equals("-d");
-        }
-
-        private static bool IsBigOrEqual(string str1, string str2, string dataType)
+        private static bool Compare(string str1, string str2, string dataType, string directionSort)
         {
             if (dataType.Equals("-i"))
             {
-                return int.Parse(str1) >= int.Parse(str2);
+                try
+                {
+                    return directionSort.Equals("-a") && (int.Parse(str1) >= int.Parse(str2)) ||
+                            directionSort.Equals("-d") && (int.Parse(str1) <= int.Parse(str2));
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Не удалось сравнить данные как целые числа:");
+                    Console.WriteLine(e.Message);
+                }
             }
-            return str1.CompareTo(str2) >= 0;
-
-        }
-
-        private static void InsertionSort(List<string> ListString, string dataLine, string dataType, string direction)
-        {
-            int index = ListString.Count;
-            while (index > 0 && IsBigOrEqual(ListString[index - 1], dataLine, dataType) && DirectionSort(direction))
-            {
-                index--;
-            }
-            ListString.Insert(index, dataLine);
+            return string.Compare(str1, str2) < 0;
+                    //directionSort.Equals("-a") && dataType.Equals("-i") && (int.Parse(str1) >= int.Parse(str2)) ||
+                    //directionSort.Equals("-d") && dataType.Equals("-i") && (int.Parse(str1) <= int.Parse(str2)) ||
+                    //directionSort.Equals("-a") && dataType.Equals("-s") && (string.Compare(str1, str2) <= 0) ||
+                    //directionSort.Equals("-d") && dataType.Equals("-s") && (string.Compare(str1, str2) >= 0);
         }
 
         private static void Help()
@@ -82,7 +79,12 @@ namespace sort_it
                     string str;
                     while ((str = reader.ReadLine()) != null)
                     {
-                        InsertionSort(ListStringOfFile, str, args[2], args[3]);
+                        int index = ListStringOfFile.Count;
+                        while (index > 0 && Compare(ListStringOfFile[index - 1], str, args[2], args[3]))
+                        {
+                            index--;
+                        }
+                        ListStringOfFile.Insert(index, str);
                     }
                 }
             }
@@ -91,9 +93,6 @@ namespace sort_it
                 Console.WriteLine("Не удалось прочитать файл:");
                 Console.WriteLine(e.Message);
             }
-
-            //Console.WriteLine("Сортировка данных методом вставок (insertion sort)");
-            //array = InsertionSort(array, args[2], args[3]);
 
             try
             {

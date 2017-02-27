@@ -79,6 +79,35 @@ namespace Range
                 Console.WriteLine("пустое множество.");
             }
 
+            //try
+            //{
+            //    Range wrongRange = new Range(5.5, -6);
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e.Message);
+            //}
+
+            Range oneMoreRange = new Range(-3, 3);
+
+            try
+            {
+                oneMoreRange.From = 4;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            //try
+            //{
+            //    oneMoreRange.To = -4;
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e.Message);
+            //}
+
             Console.WriteLine("Для выходя нажмите клавишу Утеук...");
             Console.ReadLine();
         }
