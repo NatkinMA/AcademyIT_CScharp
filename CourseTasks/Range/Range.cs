@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Range
 {
@@ -20,7 +16,7 @@ namespace Range
             }
             set
             {
-                if (value > this.to) throw new Exception("Неправильно задано начало отрезка.");
+                //if (value > this.to) throw new Exception("Неправильно задано начало отрезка.");
                 this.from = value;
             }
         }
@@ -33,7 +29,7 @@ namespace Range
             }
             set
             {
-                if (value < this.from) throw new Exception("Ошибочно задано окончание отрезка.");
+                //if (value < this.from) throw new Exception("Ошибочно задано окончание отрезка.");
                 this.to = value;
             }
         }
@@ -41,10 +37,10 @@ namespace Range
         // Конструктор класса Range
         public Range(double from, double to)
         {
-            if (from > to)
-            {
-                throw new Exception("Не правильно заданы параметры для создания отрезка.");
-            }
+            //if (from > to)
+            //{
+            //    throw new Exception("Не правильно заданы параметры для создания отрезка.");
+            //}
             this.From = from;
             this.To = to;
         }

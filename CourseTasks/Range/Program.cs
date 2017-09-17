@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Range
 {
@@ -11,9 +7,11 @@ namespace Range
         static void Main(string[] args)
         {
             Console.WriteLine("Программа для работы с классом Range");
+            Range range1, range2;
 
-            Range range1 = new Range(-5.5, 5.5);
-            Range range2 = new Range(6, 7);
+            range1 = new Range(-5.5, 5.5);
+            range2 = new Range(6, 7);
+
             double number01 = 1.5;
             double number02 = 6.5;
 
