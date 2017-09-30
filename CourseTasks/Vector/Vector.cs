@@ -4,7 +4,7 @@ namespace Vector
 {
     class Vector
     {
-        private double[] dimentions;
+        private double[] elements;
 
         public Vector(int n)
         {
@@ -12,41 +12,47 @@ namespace Vector
             {
                 throw new ArgumentOutOfRangeException("Некорректное значение размера массива.");
             }
-            dimentions = new double[n];
+            elements = new double[n];
         }
 
         public Vector(Vector vector)
         {
-            dimentions = (double[]) vector.dimentions.Clone();
+            elements = (double[]) vector.elements.Clone();
         }
 
         public Vector(params double[] dimentions)
         {
-            this.dimentions = (double[]) dimentions.Clone();
+            this.elements = (double[]) dimentions.Clone();
         }
 
         public Vector(int n, params double[] dimentions)
         {
-            if (n <= 0) throw new ArgumentOutOfRangeException("Некорректное значение размера массива.");
-            this.dimentions = new double[n];
-            dimentions.CopyTo(this.dimentions, 0);
+            if (n <= 0)
+            {
+                throw new ArgumentOutOfRangeException("Некорректное значение размера массива.");
+            }
+            this.elements = new double[n];
+            dimentions.CopyTo(this.elements, 0);
         }
 
         public override string ToString()
         {
-            return String.Join(", ", dimentions);
+            return string.Join(", ", elements);
         }
 
-        public int Size => dimentions.Length;
+        public int Size => elements.Length;
 
         public void Multiplication (double k)
         {
-            for (int i = 0; i < dimentions.Length; i++) dimentions[i] = k * dimentions[i];
+            for (int i = 0; i < elements.Length; i++)
+            {
+                elements[i] = k * elements[i];
+            }
         }
 
-        public void Deploy()
+        public void Revert()
         {
-            for (int i = 0; i < dimentions.Length; i++) dimentions[i] = -1 * dimentions[i];
+            Multiplication(-1);
         }
 
         public double Length
@@ -54,26 +60,37 @@ namespace Vector
             get
             {
                 double length = 0;
-                foreach (double dimention in dimentions) length = length + Math.Pow(dimention, 2);
+                foreach (double dimention in elements)
+                {
+                    length = length + Math.Pow(dimention, 2);
+                }
                 return Math.Sqrt(length);
             }
         }
 
-        public void SetDimention(int i, double dimention) { dimentions[i] = dimention; }
-
-        public double GetDimention(int i) { return dimentions[i]; }
+        public double this[int index]
+        {
+            set
+            {
+                elements[index] = value;
+            }
+            get
+            {
+                return elements[index];
+            }
+        }
 
         public void Add(Vector vector)
         {
             if (this.Size < vector.Size)
             {
-                double[] temp = (double[])dimentions.Clone();
-                this.dimentions = new double[vector.Size];
-                temp.CopyTo(this.dimentions, 0);
+                double[] temp = elements;
+                this.elements = new double[vector.Size];
+                temp.CopyTo(this.elements, 0);
             }
             for (int i = 0; i < vector.Size; i++)
             {
-                this.SetDimention(i, this.GetDimention(i) + vector.GetDimention(i));
+                this[i] = this[i] + vector[i];
             }
         }
 
@@ -81,95 +98,50 @@ namespace Vector
         {
             if (this.Size < vector.Size)
             {
-                double[] temp = (double[])dimentions.Clone();
-                this.dimentions = new double[vector.Size];
-                temp.CopyTo(this.dimentions, 0);
+                double[] temp = elements;
+                this.elements = new double[vector.Size];
+                temp.CopyTo(this.elements, 0);
             }
             for (int i = 0; i < vector.Size; i++)
             {
-                this.SetDimention(i, this.GetDimention(i) - vector.GetDimention(i));
+                this[i] = this[i] - vector[i];
             }
-            /*
-            vector.Deploy(); // так делать нельзя, потому что меняется объект.
-            this.Add(vector);
-            */
         }
 
         public static Vector Addition(Vector vector1, Vector vector2)
         {
-            int size = 0;
-
-            if (vector1.Size >= vector2.Size)
-            {
-                size = vector1.Size;
-                vector2 = new Vector(size, vector2.dimentions);
-            } else {
-                size = vector2.Size;
-                vector1 = new Vector(size, vector1.dimentions);
-            }
-
-            Vector vector = new Vector(size);
-
-            for (int i = 0; i < size; i++)
-            {
-                vector.SetDimention(i, vector1.GetDimention(i) + vector2.GetDimention(i));
-            }
-
-            return vector;
+            vector1.Add(vector2);
+            return vector1;
         }
 
         public static Vector Subtraction(Vector vector1, Vector vector2)
         {
-            int size = 0;
-
-            if (vector1.Size >= vector2.Size)
-            {
-                size = vector1.Size;
-                vector2 = new Vector(size, vector2.dimentions);
-            }
-            else
-            {
-                size = vector2.Size;
-                vector1 = new Vector(size, vector1.dimentions);
-            }
-
-            Vector vector = new Vector(size);
-
-            for (int i = 0; i < size; i++)
-            {
-                vector.SetDimention(i, vector1.GetDimention(i) - vector2.GetDimention(i));
-            }
-
-            return vector;
-            /*
-            vector2.Deploy();
-            return Addition(vector1, vector2);
-            */
+            vector1.Subtract(vector2);
+            return vector1;
         }
 
-        public static Vector ScalarProduct(Vector vector1, Vector vector2)
+        public static double ScalarProduct(Vector vector1, Vector vector2)
         {
             int size = 0;
+            double result = 0.0;
 
             if (vector1.Size >= vector2.Size)
             {
                 size = vector1.Size;
-                vector2 = new Vector(size, vector2.dimentions);
+                vector2 = new Vector(size, vector2.elements);
             }
             else
             {
                 size = vector2.Size;
-                vector1 = new Vector(size, vector1.dimentions);
+                vector1 = new Vector(size, vector1.elements);
             }
-
-            Vector vector = new Vector(size);
 
             for (int i = 0; i < size; i++)
             {
-                vector.SetDimention(i, vector1.GetDimention(i) * vector2.GetDimention(i));
+                result = result + vector1[i] * vector2[i];
             }
 
-            return vector;
+            return result;
         }
 
         public bool Equals(Vector vector)
@@ -186,7 +158,10 @@ namespace Vector
             {
                 for(int i = 0; i < vector.Length; i++)
                 {
-                    if (!this.GetDimention(i).Equals(vector.GetDimention(i))) return false;
+                    if (!this[i].Equals(vector[i]))
+                    {
+                        return false;
+                    }
                 }
                 return true;
             }
