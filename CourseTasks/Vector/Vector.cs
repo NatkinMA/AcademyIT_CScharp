@@ -20,19 +20,19 @@ namespace Vector
             elements = (double[]) vector.elements.Clone();
         }
 
-        public Vector(params double[] dimentions)
+        public Vector(params double[] elements)
         {
-            this.elements = (double[]) dimentions.Clone();
+            this.elements = (double[]) elements.Clone();
         }
 
-        public Vector(int n, params double[] dimentions)
+        public Vector(int n, params double[] elements)
         {
             if (n <= 0)
             {
                 throw new ArgumentOutOfRangeException("Некорректное значение размера массива.");
             }
             this.elements = new double[n];
-            dimentions.CopyTo(this.elements, 0);
+            elements.CopyTo(this.elements, 0);
         }
 
         public override string ToString()
@@ -60,9 +60,9 @@ namespace Vector
             get
             {
                 double length = 0;
-                foreach (double dimention in elements)
+                foreach (double element in elements)
                 {
-                    length = length + Math.Pow(dimention, 2);
+                    length += Math.Pow(element, 2);
                 }
                 return Math.Sqrt(length);
             }
@@ -90,7 +90,7 @@ namespace Vector
             }
             for (int i = 0; i < vector.Size; i++)
             {
-                this[i] = this[i] + vector[i];
+                this[i] += vector[i];
             }
         }
 
@@ -104,38 +104,29 @@ namespace Vector
             }
             for (int i = 0; i < vector.Size; i++)
             {
-                this[i] = this[i] - vector[i];
+                this[i] -= vector[i];
             }
         }
 
         public static Vector Addition(Vector vector1, Vector vector2)
         {
-            vector1.Add(vector2);
-            return vector1;
+            Vector vector = new Vector(vector1);
+            vector.Add(vector2);
+            return vector;
         }
 
         public static Vector Subtraction(Vector vector1, Vector vector2)
         {
-            vector1.Subtract(vector2);
-            return vector1;
+            Vector vector = new Vector(vector1);
+            vector.Subtract(vector2);
+            return vector;
         }
 
         public static double ScalarProduct(Vector vector1, Vector vector2)
         {
-            int size = 0;
+            int size = vector1.Size <= vector2.Size ? vector1.Size : vector2.Size;
             double result = 0.0;
-
-            if (vector1.Size >= vector2.Size)
-            {
-                size = vector1.Size;
-                vector2 = new Vector(size, vector2.elements);
-            }
-            else
-            {
-                size = vector2.Size;
-                vector1 = new Vector(size, vector1.elements);
-            }
-
+            
             for (int i = 0; i < size; i++)
             {
                 result = result + vector1[i] * vector2[i];
