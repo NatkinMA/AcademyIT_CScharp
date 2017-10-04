@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Vector
+namespace Matrix
 {
     class Vector
     {
@@ -27,7 +27,7 @@ namespace Vector
 
         public Vector(int n, params double[] elements)
         {
-            if (n <= 0 || n > elements.Length)
+            if (n <= 0)
             {
                 throw new ArgumentOutOfRangeException("Некорректное значение размера массива.");
             }
@@ -124,12 +124,12 @@ namespace Vector
 
         public static double ScalarProduct(Vector vector1, Vector vector2)
         {
-            int size = Math.Min(vector1.Size, vector2.Size);
+            int size = vector1.Size <= vector2.Size ? vector1.Size : vector2.Size;
             double result = 0.0;
             
             for (int i = 0; i < size; i++)
             {
-                result += vector1[i] * vector2[i];
+                result = result + vector1[i] * vector2[i];
             }
 
             return result;
