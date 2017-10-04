@@ -27,7 +27,7 @@ namespace Vector
 
         public Vector(int n, params double[] elements)
         {
-            if (n <= 0 || n > elements.Length)
+            if (n <= 0 || n < elements.Length)
             {
                 throw new ArgumentOutOfRangeException("Некорректное значение размера массива.");
             }
