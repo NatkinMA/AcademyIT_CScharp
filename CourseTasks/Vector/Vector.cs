@@ -22,17 +22,24 @@ namespace Vector
 
         public Vector(params double[] elements)
         {
+            if (elements.Length == 0)
+            {
+                throw new ArgumentOutOfRangeException("Некорректный размер вектора.");
+            }
             this.elements = (double[]) elements.Clone();
         }
 
         public Vector(int n, params double[] elements)
         {
-            if (n <= 0 || n < elements.Length)
+            if (n <= 0)
             {
                 throw new ArgumentOutOfRangeException("Некорректное значение размера массива.");
             }
             this.elements = new double[n];
-            elements.CopyTo(this.elements, 0);
+            for (int i = 0; i < this.elements.Length; i++)
+            {
+                this.elements[i] = elements[i];
+            }
         }
 
         public override string ToString()

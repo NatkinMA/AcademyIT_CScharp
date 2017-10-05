@@ -34,8 +34,8 @@ namespace Vector
                 Console.WriteLine("Размер вектора: {0}.", vector4.Size);
                 Console.WriteLine("Длина вектора: {0}.", vector4.Length);
                 Console.WriteLine("Значение компоненты вектора с индексом 1: {0}", vector4[1]);
-                vector4[4] = 6.7;
-                Console.WriteLine("Устанавливаем компонент вектора с индексом 4: {0}", vector4[4]);
+                vector4[2] = 6.7;
+                Console.WriteLine("Устанавливаем компонент вектора с индексом 2: {0}", vector4[2]);
                 Console.WriteLine("Складываем два вектора ({0}) и ({1}) с помощью статического метода.", vector2.ToString(), vector4.ToString());
                 Vector vector5 = Vector.Addition(vector2, vector4);
                 Console.WriteLine("Суммарный вектор: {0}", vector5.ToString());
