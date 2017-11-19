@@ -92,7 +92,7 @@ namespace ArrayList
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new System.NotImplementedException();
+            return new ItemEnum<T>(items);
         }
 
         public int IndexOf(T item)
@@ -148,7 +148,7 @@ namespace ArrayList
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new System.NotImplementedException();
+            return GetEnumerator();
         }
 
         public override string ToString()
@@ -216,6 +216,54 @@ namespace ArrayList
         public override int GetHashCode()
         {
             return this.ToString().GetHashCode();
+        }
+    }
+
+    class ItemEnum<T> : IEnumerator<T>
+    {
+        private T[] items;
+
+        private int position = -1;
+
+        public ItemEnum(T[] arrayList)
+        {
+            items = arrayList;
+        }
+
+        public T Current
+        {
+            get
+            {
+                try
+                {
+                    return items[position];
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    throw new InvalidOperationException();
+                }
+            }
+        }
+
+        object IEnumerator.Current
+        {
+            get { return Current; }
+        }
+
+        public void Dispose()
+        {
+            //throw new NotImplementedException();
+        }
+
+        public bool MoveNext()
+        {
+            position++;
+            return (position < items.Length);
+        }
+
+        public void Reset()
+        {
+            position = -1;
         }
     }
 }

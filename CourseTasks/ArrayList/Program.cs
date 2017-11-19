@@ -42,6 +42,11 @@ namespace ArrayList
 
             Console.WriteLine("Новый список: {0}. Размер списка: {1}.", myAL, myAL.Count);
 
+            foreach (int item in myAL)
+            {
+                Console.WriteLine(item);
+            }
+
             ArrayList<string> myStringAL = new ArrayList<string>(capacity: 25);
 
             Console.WriteLine("Новый пустой список размерностью 25 элементов: {0}.", myStringAL);
