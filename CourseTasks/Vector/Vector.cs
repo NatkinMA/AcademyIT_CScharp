@@ -2,7 +2,7 @@
 
 namespace Vector
 {
-    class Vector
+    public class Vector
     {
         private double[] elements;
 
